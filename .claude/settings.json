@@ -1,0 +1,56 @@
+{
+  "permissions": {
+    "allow": [
+      "Ls",
+      "Pwd",
+      "Cat",
+      "Grep",
+      "Find",
+      "Tree",
+      "Git status",
+      "Git add",
+      "Git commit",
+      "Git diff",
+      "Terraform fmt",
+      "Terraform validate",
+      "Terraform plan",
+      "Aws sts get-caller-identity"
+    ],
+    "deny": [
+      "Rm -rf *",
+      "Rm -rf /",
+      "Sudo rm -rf *",
+      "Terraform destroy",
+      "Terraform apply -auto-approve",
+      "Aws s3 rb",
+      "Aws s3 rm --recursive",
+      "Aws iam delete-*",
+      "Aws ec2 terminate-*",
+      "Git push --force",
+      "Git reset --hard"
+    ]
+  },
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .claude/hooks/prompt-safety.py"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .claude/hooks/bash-safety.py"
+          }
+        ]
+      }
+    ]
+  }
+}
