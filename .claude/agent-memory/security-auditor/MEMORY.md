@@ -1,0 +1,2 @@
+- [Terraform scaffold baseline](terraform_scaffold_baseline.md) — known-good patterns + recurring gaps in terraform/ (S3+CloudFront), audited 2026-07-10
+- [.gitignore is a directory](gitignore_is_a_directory.md) — repo root `.gitignore` is a folder not a file, so nothing is actually git-ignored
